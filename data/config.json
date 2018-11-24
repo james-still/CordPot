@@ -1,0 +1,10 @@
+{
+    "token": "your honepot user token here",
+    "channel": "your log channel id here",
+    "guilds": [
+        "an array entry to block certain guilds here"
+    ],
+    "admins": [
+        "an array for people to ignore here"
+    ]
+}
