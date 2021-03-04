@@ -11,7 +11,7 @@ const config = require('./data/config.json');
 
 client.on('ready', () => {
     console.log("I am now logging suspicious messages in all the servers I am in :)\n");
-    client.channels.get(config.channel).send("I am online! :smile:");
+    client.channels.get(config.channel).send("**I am online!** :smile:");
 });
 
 client.on('message', async message => {
@@ -37,20 +37,19 @@ function logMessage(message, word) {
 
     fs.appendFile(`logs/${date}.log`, `[${time}, ${guild.id}, ${channel.id}, ${word}] ${author.tag}: ${message.content}\r\n`, (err) => {
         if (err) throw err;
-        client.channels.get(config.channel).send("```\n" + `Author: ${message.author.tag}\nGuild: ${message.guild.name}\nKeyword: ${word}\nMessage: ${message.content}` + "```");
+        client.channels.get(config.channel).send("```\n" + `${time} | ${date}\n\nAuthor: ${message.author.tag}\nGuild: ${message.guild.name}\nKeyword: ${word}\nMessage: ${message.content}` + "```");
     });
 }
 
 
 function findWords(message) {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
         var message_words = message.replace("`", "").toLowerCase().split(" ");
         words.forEach(word => {
             for (i = 0; i < message_words.length; i++) { 
                 if (message_words[i] === word) return resolve(word);
             }
         });
-        return reject('Not Found');
     });
 }
 
